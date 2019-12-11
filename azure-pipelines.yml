@@ -1,0 +1,13 @@
+# Minimal Pipeline for test-deployment
+
+pool:
+  name: Hosted Windows 2019 with VS2019
+  demands: azureps
+
+steps:
+- task: AzurePowerShell@4
+  inputs:
+    azureSubscription: 'suscription_Helo'
+    ScriptPath: 'test-jsondeployment/VNET.json'
+    ScriptArguments: -ResourceGroupName 'Pacemaker_cluster' -ResourceGroupLocation 'francecentral'
+    azurePowerShellVersion: LatestVersion
