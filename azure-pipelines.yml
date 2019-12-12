@@ -19,3 +19,4 @@ steps:
     csmFile: 'VNET.json'
     csmParametersFile: 'parametersFile.json'
     deploymentMode: 'Incremental'
+
