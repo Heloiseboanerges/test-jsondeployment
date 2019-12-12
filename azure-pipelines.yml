@@ -16,6 +16,6 @@ steps:
     resourceGroupName: 'Pacemaker_cluster'
     location: 'France Central'
     templateLocation: 'Linked artifact'
-    csmFile: 'test-jsondeployment/VNET.json'
-    csmParametersFile: 'test-jsondeployment/parametersFile.json'
+    csmFile: 'heloiseboanerges/test-jsondeployment/VNET.json'
+    csmParametersFile: 'heloiseboanerges/test-jsondeployment/parametersFile.json'
     deploymentMode: 'Incremental'
