@@ -3,25 +3,25 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "name": {
-      "value": null
+      "value": "VNET_cluster"
     },
     "resourceGroup": {
-      "value": null
+      "value": "Pacemaker_cluster"
     },
     "location": {
-      "value": null
+      "value": "francecentral"
     },
     "addressPrefix": {
-      "value": null
+      "value": "192.168.0.0/16"
     },
     "subnetName": {
-      "value": null
+      "value": "machines"
     },
     "subnetAddressPrefix": {
-      "value": null
+      "value": "192.168.0.0/24"
     },
     "enableDdosProtection": {
-      "value": null
+      "value": "false"
     }
   }
 }
