@@ -29,7 +29,7 @@ steps:
     resourceGroupName: 'Pacemaker_cluster'
     location: 'France Central'
     templateLocation: 'Linked artifact'
-    csmFile: '/Proximity-placement-group/template.json'
-    csmParametersFile: '/Proximity-placement-group/parameters.json'
+    csmFile: './Proximity-placement-group/template.json'
+    csmParametersFile: './Proximity-placement-group/parameters.json'
     deploymentMode: 'Incremental'
 
