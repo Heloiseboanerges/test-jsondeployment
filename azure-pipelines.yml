@@ -19,9 +19,7 @@ steps:
     csmFile: 'VNET.json'
     csmParametersFile: 'parametersFile.json'
     deploymentMode: 'Incremental'
-# Minimal Pipeline for test-deployment
 
-steps:
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
