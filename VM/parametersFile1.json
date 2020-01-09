@@ -1,0 +1,125 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "northeurope"
+    },
+    "networkInterfaceName": {
+      "value": "pacemaker-2"
+    },
+    "enableAcceleratedNetworking": {
+      "value": true
+    },
+    "networkSecurityGroupName": {
+      "value": "pacemaker1-nsg"
+    },
+    "networkSecurityGroupRules": {
+      "value": [
+        {
+          "name": "ssh",
+          "properties": {
+            "priority": 1010,
+            "protocol": "TCP",
+            "access": "Allow",
+            "direction": "Inbound",
+            "sourceApplicationSecurityGroups": [],
+            "destinationApplicationSecurityGroups": [],
+            "sourceAddressPrefix": "*",
+            "sourcePortRange": "*",
+            "destinationAddressPrefix": "*",
+            "destinationPortRange": "22"
+          }
+        }
+      ]
+    },
+    "subnetName": {
+      "value": "machines"
+    },
+    "virtualNetworkId": {
+      "value": "/subscriptions/714f1d31-e6fc-4955-acef-4e261636a95e/resourceGroups/Pacemaker_cluster/providers/Microsoft.Network/virtualNetworks/VNET_cluster"
+    },
+    "publicIpAddressName": {
+      "value": "pacemaker2-ip"
+    },
+    "publicIpAddressType": {
+      "value": "Static"
+    },
+    "publicIpAddressSku": {
+      "value": "Standard"
+    },
+    "virtualMachineName": {
+      "value": "pacemaker2"
+    },
+    "virtualMachineRG": {
+      "value": "Pacemaker_cluster"
+    },
+    "osDiskType": {
+      "value": "Standard_LRS"
+    },
+    "dataDisks": {
+      "value": [
+        {
+          "lun": 0,
+          "createOption": "attach",
+          "caching": "ReadOnly",
+          "writeAcceleratorEnabled": false,
+          "id": null,
+          "name": "pacemaker2-01",
+          "storageAccountType": null,
+          "diskSizeGB": null
+        }
+      ]
+    },
+    "dataDiskResources": {
+      "value": [
+        {
+          "name": "pacemaker2-01",
+          "sku": "Standard_LRS",
+          "properties": {
+            "diskSizeGB": 32,
+            "creationData": {
+              "createOption": "empty"
+            }
+          }
+        }
+      ]
+    },
+    "virtualMachineSize": {
+      "value": "Standard_DS2_v2"
+    },
+    "adminUsername": {
+      "value": "usuario"
+    },
+    "adminPassword": {
+      "value": "1*clavemaquina"
+    },
+    "proximityPlacementGroupId": {
+      "value": "/subscriptions/714f1d31-e6fc-4955-acef-4e261636a95e/resourceGroups/PACEMAKER_CLUSTER/providers/Microsoft.Compute/proximityPlacementGroups/PPG-pacemaker-cluster-1"
+    },
+    "diagnosticsStorageAccountName": {
+      "value": "stapacemakerheloise"
+    },
+    "diagnosticsStorageAccountId": {
+      "value": "/subscriptions/714f1d31-e6fc-4955-acef-4e261636a95e/resourceGroups/Pacemaker_cluster/providers/Microsoft.Storage/storageAccounts/stapacemakerheloise"
+    },
+    "zone": {
+      "value": "1"
+    },
+    "autoShutdownStatus": {
+      "value": "Enabled"
+    },
+    "autoShutdownTime": {
+      "value": "19:00"
+    },
+    "autoShutdownTimeZone": {
+      "value": "Romance Standard Time"
+    },
+    "autoShutdownNotificationStatus": {
+      "value": "Disabled"
+    },
+    "autoShutdownNotificationLocale": {
+      "value": "en"
+    }
+  }
+}
