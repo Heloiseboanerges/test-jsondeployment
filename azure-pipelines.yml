@@ -46,7 +46,7 @@ steps:
     csmParametersFile: './storage_account/parameters.json'
     deploymentMode: 'Incremental'
 
-    - task: AzureResourceManagerTemplateDeployment@3
+- task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'suscription_Helo'
