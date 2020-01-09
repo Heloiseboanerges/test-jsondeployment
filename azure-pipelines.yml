@@ -74,6 +74,6 @@ steps:
     location: 'France Central'
     templateLocation: 'Linked artifact'
     csmFile: './VM/template.json'
-    csmParametersFile: './VM/parameters.json'
+    csmParametersFile: './VM/parametersFile.json'
     deploymentMode: 'Incremental'
 
