@@ -16,8 +16,8 @@ steps:
     resourceGroupName: 'Pacemaker_cluster'
     location: 'France Central'
     templateLocation: 'Linked artifact'
-    csmFile: 'VNET.json'
-    csmParametersFile: 'parametersFile.json'
+    csmFile: './vnet/VNET.jsonn'
+    csmParametersFile: './vnet/parametersFile.json'
     deploymentMode: 'Incremental'
 
 - task: AzureResourceManagerTemplateDeployment@3
