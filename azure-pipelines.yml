@@ -77,3 +77,17 @@ steps:
     csmParametersFile: './VM/parametersFile.json'
     deploymentMode: 'Incremental'
 
+- task: AzureResourceManagerTemplateDeployment@3
+#deployment of the VM node 2 cluster pacemaker
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'suscription_Helo'
+    subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'Pacemaker_cluster'
+    location: 'France Central'
+    templateLocation: 'Linked artifact'
+    csmFile: './VM/template.json'
+    csmParametersFile: './VM/parametersFile1.json'
+    deploymentMode: 'Incremental'
+
