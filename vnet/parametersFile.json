@@ -9,7 +9,7 @@
       "value": "Pacemaker_cluster"
     },
     "location": {
-      "value": "francecentral"
+      "value": "northeurope"
     },
     "addressPrefix": {
       "value": "192.168.0.0/16"
