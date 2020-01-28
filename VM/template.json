@@ -87,11 +87,12 @@
     "variables": {
         "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]",
         "vnetId": "[parameters('virtualNetworkId')]",
-        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
+        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
+        "nicName" : "[concat(parameters('networkInterfaceName'),'-NIC-01')]"
     },
     "resources": [
         {
-            "name": "[concat(parameters('networkInterfaceName'),'-NIC-01')]",
+            "name": "[variables('nicName')]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2019-07-01",
             "location": "[parameters('location')]",
@@ -168,7 +169,7 @@
             "location": "[parameters('location')]",
             "dependsOn": [
                 "managedDiskResources",
-                "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName'))]"
+                "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
             ],
             "properties": {
                 "hardwareProfile": {
@@ -209,7 +210,7 @@
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaceName'))]"
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
                         }
                     ]
                 },
