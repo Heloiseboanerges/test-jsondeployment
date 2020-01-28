@@ -1,1 +1,1 @@
-sudo zypper -y patch --category security
+sudo zypper patch -y --category security
