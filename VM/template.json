@@ -257,11 +257,11 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines/extensions",
-            "name": "[concat(variables('vmName'),'/startupscript')]",
+            "name": "[concat(variables('virtualMachineName'),'/startupscript')]",
             "apiVersion": "2019-07-01",
             "location": "[parameters('location')]",
             "dependsOn": [
-              "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+              "[concat('Microsoft.Compute/virtualMachines/', variables('virtualMachineName'))]"
             ],
             "properties": {
               "publisher": "Microsoft.Azure.Extensions",
