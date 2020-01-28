@@ -91,7 +91,7 @@
     },
     "resources": [
         {
-            "name": "[parameters('networkInterfaceName')]",
+            "name": "[concat(parameters('networkInterfaceName'),'-NIC-01')]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2019-07-01",
             "location": "[parameters('location')]",
@@ -131,7 +131,7 @@
         },
         {
             "name": "[parameters('publicIpAddressName')]",
-            "type": "Microsoft.Network/publicIpAddresses",
+            "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2019-02-01",
             "location": "[parameters('location')]",
             "properties": {
