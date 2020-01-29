@@ -92,7 +92,12 @@
       "value": "usuario"
     },
     "adminPassword": {
-      "value": "1*clavemaquina"
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/714f1d31-e6fc-4955-acef-4e261636a95e/resourceGroups/key_vault/providers/Microsoft.KeyVault/vaults/keys-secrets"
+        },
+        "secretName": "usuario"
+      }
     },
     "proximityPlacementGroupId": {
       "value": "/subscriptions/714f1d31-e6fc-4955-acef-4e261636a95e/resourceGroups/PACEMAKER_CLUSTER/providers/Microsoft.Compute/proximityPlacementGroups/PPG-pacemaker-cluster"
