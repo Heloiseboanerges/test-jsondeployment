@@ -86,7 +86,7 @@
       ]
     },
     "virtualMachineSize": {
-      "value": "Standard_D2s_v3"
+      "value": "Standard_Ds2_v2"
     },
     "adminUsername": {
       "value": "usuario"
