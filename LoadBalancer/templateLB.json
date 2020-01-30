@@ -1,0 +1,117 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+
+        "location": {
+            "type": "string"
+        },
+        "subnetId": {
+            "type": "string"
+        },
+        "lbname": {
+            "type": "string"
+        },
+        "lbsku": {
+            "type": "string"
+        },
+        "LbprivateIPAllocationMethod": {
+            "type": "string"
+        },
+        "LbprivateIPAddress": {
+            "type": "string"
+        }
+
+    },
+    "variables":
+        {
+            "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]",
+            "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/LoadBalancerFrontEnd')]",
+            "lbPoolID": "[concat(variables('lbID'),'/backendAddressPools/BackendNFS')]",
+            "lbProbeID": "[concat(variables('lbID'),'/probes/tcpProbe')]"
+        },
+    "resources": [
+        {
+            "name": "[parameters('name')]",
+            "type": "Microsoft.Network/loadBalancers",
+            "apiVersion": "2019-06-01",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "[parameters('lbsku')]"
+            },
+            "dependsOn": [],
+            "tags": {},
+            "properties": {
+                "frontendIPConfigurations": [
+                    {
+                        "name": "NFSFrontEnd",
+                        "properties": {
+                            "privateIPAllocationMethod": "[parameters('lbprivateIPAllocationMethod')]",
+                            "subnet": {
+                                "id": "[variables('subnetRef')]"
+                            },
+                            "privateIPAddress": "[parameters('lbprivateIPAddress')]"
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                      "name": "BackendNFS"
+                    }
+                ],
+                "probes": [
+                    {
+                      "name": "NFStcpProbe",
+                      "properties": {
+                        "protocol": "Tcp",
+                        "port": 61000,
+                        "intervalInSeconds": 5,
+                        "numberOfProbes": 2
+                      }
+                    }
+                  ],
+                  "loadBalancingRules": [
+                    {
+                      "name": "NFSTcpLBRule",
+                      "properties": {
+                        "frontendIPConfiguration": {
+                          "id": "[variables('frontEndIPConfigID')]"
+                        },
+                        "backendAddressPool": {
+                          "id": "[variables('lbPoolID')]"
+                        },
+                        "protocol": "Tcp",
+                        "frontendPort": 2049,
+                        "backendPort": 2049,
+                        "enableFloatingIP": true,
+                        "idleTimeoutInMinutes": 30,
+                        "probe": {
+                          "id": "[variables('lbProbeID')]"
+                        }
+                      }
+                    },
+                    {
+                        "name": "NFSUdpLBRule",
+                        "properties": {
+                          "frontendIPConfiguration": {
+                            "id": "[variables('frontEndIPConfigID')]"
+                          },
+                          "backendAddressPool": {
+                            "id": "[variables('lbPoolID')]"
+                          },
+                          "protocol": "Udp",
+                          "frontendPort": 2049,
+                          "backendPort": 2049,
+                          "enableFloatingIP": true,
+                          "idleTimeoutInMinutes": 30,
+                          "probe": {
+                            "id": "[variables('lbProbeID')]"
+                          }
+                        }
+                      }
+                  ]
+            }
+        }
+
+    ]
+}

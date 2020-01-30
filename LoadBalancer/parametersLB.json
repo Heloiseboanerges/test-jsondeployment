@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "northeurope"
+        },
+        "lbname": {
+            "value": "NFS"
+        },
+        "sku": {
+            "value": "Standard"
+        },
+        "subnetId": {
+            "value": "/subscriptions/714f1d31-e6fc-4955-acef-4e261636a95e/resourceGroups/Pacemaker_cluster/providers/Microsoft.Network/virtualNetworks/VNET_cluster/subnets/machines"
+        },
+        "privateIPAllocationMethod": {
+            "value": "Static"
+        },
+        "privateIPAddress": {
+            "value": "192.168.0.13"
+        }
+    }
+}

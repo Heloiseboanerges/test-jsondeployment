@@ -85,6 +85,7 @@
         "networkSecurityGroupName" : "[concat(variables('nicName'),'-NSG')]",
         "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
         "publicIpAddressName" : "[concat(parameters('virtualMachineName'),'-PIP')]"
+
     },
     "resources": [
         {
