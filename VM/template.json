@@ -5,14 +5,8 @@
         "location": {
             "type": "string"
         },
-        "networkInterfaceName": {
-            "type": "string"
-        },
         "enableAcceleratedNetworking": {
             "type": "bool"
-        },
-        "networkSecurityGroupName": {
-            "type": "string"
         },
         "networkSecurityGroupRules": {
             "type": "array"
@@ -21,9 +15,6 @@
             "type": "string"
         },
         "virtualNetworkId": {
-            "type": "string"
-        },
-        "publicIpAddressName": {
             "type": "string"
         },
         "publicIpAddressType": {
@@ -85,10 +76,12 @@
         }
     },
     "variables": {
-        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]",
         "vnetId": "[parameters('virtualNetworkId')]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
-        "nicName" : "[concat(parameters('networkInterfaceName'),'-NIC-01')]"
+        "nicName" : "[concat(parameters('virtualMachineName'),'-NIC-01')]",
+        "networkSecurityGroupName" : "[concat(variables('nicName'),'-NSG')]",
+        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
+        "publicIpAddressName" : "[concat(parameters('virtualMachineName'),'-PIP')]"
     },
     "resources": [
         {
@@ -97,8 +90,8 @@
             "apiVersion": "2019-07-01",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]",
-                "[concat('Microsoft.Network/publicIpAddresses/', parameters('publicIpAddressName'))]"
+                "[concat('Microsoft.Network/networkSecurityGroups/', variables('networkSecurityGroupName'))]",
+                "[concat('Microsoft.Network/publicIpAddresses/', variables('publicIpAddressName'))]"
             ],
             "properties": {
                 "ipConfigurations": [
@@ -108,9 +101,9 @@
                             "subnet": {
                                 "id": "[variables('subnetRef')]"
                             },
-                            "privateIPAllocationMethod": "Dynamic",
+                            "privateIPAllocationMethod": "Static",
                             "publicIpAddress": {
-                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
+                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', variables('publicIpAddressName'))]"
                             }
                         }
                     }
@@ -122,7 +115,7 @@
             }
         },
         {
-            "name": "[parameters('networkSecurityGroupName')]",
+            "name": "[variables('networkSecurityGroupName')]",
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2019-02-01",
             "location": "[parameters('location')]",
@@ -131,7 +124,7 @@
             }
         },
         {
-            "name": "[parameters('publicIpAddressName')]",
+            "name": "[variables('publicIpAddressName')]",
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2019-02-01",
             "location": "[parameters('location')]",

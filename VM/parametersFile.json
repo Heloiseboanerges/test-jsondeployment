@@ -5,14 +5,8 @@
     "location": {
       "value": "northeurope"
     },
-    "networkInterfaceName": {
-      "value": "pacemaker-1"
-    },
     "enableAcceleratedNetworking": {
       "value": true
-    },
-    "networkSecurityGroupName": {
-      "value": "pacemaker1-nsg"
     },
     "networkSecurityGroupRules": {
       "value": [
@@ -38,9 +32,6 @@
     },
     "virtualNetworkId": {
       "value": "/subscriptions/714f1d31-e6fc-4955-acef-4e261636a95e/resourceGroups/Pacemaker_cluster/providers/Microsoft.Network/virtualNetworks/VNET_cluster"
-    },
-    "publicIpAddressName": {
-      "value": "pacemaker1-ip"
     },
     "publicIpAddressType": {
       "value": "Static"
