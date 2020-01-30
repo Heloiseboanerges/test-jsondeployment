@@ -33,6 +33,9 @@
     "virtualNetworkId": {
       "value": "/subscriptions/714f1d31-e6fc-4955-acef-4e261636a95e/resourceGroups/Pacemaker_cluster/providers/Microsoft.Network/virtualNetworks/VNET_cluster"
     },
+    "privateIPAddress": {
+      "value" : "192.168.0.10"
+    },
     "publicIpAddressType": {
       "value": "Static"
     },

@@ -17,6 +17,9 @@
         "virtualNetworkId": {
             "type": "string"
         },
+        "privateIPAddress": {
+            "type": "string"
+        },
         "publicIpAddressType": {
             "type": "string"
         },
@@ -101,6 +104,7 @@
                             "subnet": {
                                 "id": "[variables('subnetRef')]"
                             },
+                            "privateIPAddress": "[parameters('privateIPAddress')]",
                             "privateIPAllocationMethod": "Static",
                             "publicIpAddress": {
                                 "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', variables('publicIpAddressName'))]"
