@@ -255,7 +255,29 @@
                     "timeInMinutes": "30"
                 }
             }
-        }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachineName'),'/startupscript')]",
+            "apiVersion": "2019-07-01",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+              "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineName'))]"
+            ],
+            "properties": {
+              "publisher": "Microsoft.Azure.Extensions",
+              "type": "CustomScript",
+              "typeHandlerVersion": "2.0",
+              "autoUpgradeMinorVersion": true,
+              "settings": {
+                "fileUris": [
+                  "https://raw.githubusercontent.com/Heloiseboanerges/test-jsondeployment/master/startupscript/script.sh"
+                  
+                ],
+                "commandToExecute": "sh script.sh"
+              }
+            }
+          }
     ],
     "outputs": {
         "adminUsername": {
