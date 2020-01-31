@@ -32,7 +32,7 @@
         },
     "resources": [
         {
-            "name": "[parameters('name')]",
+            "name": "[parameters('lbname')]",
             "type": "Microsoft.Network/loadBalancers",
             "apiVersion": "2019-06-01",
             "location": "[parameters('location')]",
