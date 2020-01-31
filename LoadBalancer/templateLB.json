@@ -26,7 +26,7 @@
     "variables":
         {
             "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]",
-            "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/LoadBalancerFrontEnd')]",
+            "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/NFSFrontEnd')]",
             "lbPoolID": "[concat(variables('lbID'),'/backendAddressPools/BackendNFS')]",
             "lbProbeID": "[concat(variables('lbID'),'/probes/NFStcpProbe')]"
         },
