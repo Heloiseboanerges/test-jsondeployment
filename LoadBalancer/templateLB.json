@@ -48,7 +48,7 @@
                         "properties": {
                             "privateIPAllocationMethod": "[parameters('lbprivateIPAllocationMethod')]",
                             "subnet": {
-                                "id": "[variables('subnetRef')]"
+                                "id": "[parameters('subnetId')]"
                             },
                             "privateIPAddress": "[parameters('lbprivateIPAddress')]"
                         }
