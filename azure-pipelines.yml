@@ -93,3 +93,18 @@ steps:
     csmParametersFile: './VM/parametersFile1.json'
     deploymentMode: 'Incremental'
 
+steps:
+- task: AzureResourceManagerTemplateDeployment@3
+#deployment of the VNET
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'suscription_Helo'
+    subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'Pacemaker_cluster'
+    location: 'North Europe'
+    templateLocation: 'Linked artifact'
+    csmFile: './LoadBalancer/templateLB.json'
+    csmParametersFile: './LoadBalancer/parametersLB.json'
+    deploymentMode: 'Incremental'
+
