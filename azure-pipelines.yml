@@ -93,9 +93,8 @@ steps:
     csmParametersFile: './VM/parametersFile1.json'
     deploymentMode: 'Incremental'
 
-steps:
 - task: AzureResourceManagerTemplateDeployment@3
-#deployment of the VNET
+#deployment of LB
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'suscription_Helo'
