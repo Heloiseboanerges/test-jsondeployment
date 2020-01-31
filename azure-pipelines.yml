@@ -4,7 +4,9 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu:16.04'
+
+  container: ubuntu:16.04
 
 steps:
 - task: AzureResourceManagerTemplateDeployment@3
