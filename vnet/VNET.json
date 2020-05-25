@@ -44,5 +44,11 @@
                 ]
             }
         }
-    ]
+    ],
+    "outputs": {
+        "resourceID": {
+        "type": "object",
+        "value": "[reference(ResourceId('Microsoft.Network/virtualNetworks', parameters('name')))]"
+      }
+    }
 }
