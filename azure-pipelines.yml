@@ -10,7 +10,7 @@ pool:
 
 steps:
 - task: AzureResourceManagerTemplateDeployment@3
-#deployment of the VNET
+  name: "deployment_VNET"
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'connection-deployment-test'
@@ -24,7 +24,7 @@ steps:
     deploymentMode: 'Validation'
 
 - task: AzureResourceManagerTemplateDeployment@3
-#deployment of the PPG
+  name: "deployment_PPG"
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'connection-deployment-test'
@@ -38,7 +38,7 @@ steps:
     deploymentMode: 'Validation'
 
 - task: AzureResourceManagerTemplateDeployment@3
-#deployment of the PPG-1
+  name: "deployment_PPG_1"
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'connection-deployment-test'
@@ -52,7 +52,7 @@ steps:
     deploymentMode: 'Validation'
 
 - task: AzureResourceManagerTemplateDeployment@3
-#deployment of the diagnostics storage account
+  name: "deployment_diagnostics_storage_account"
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'connection-deployment-test'
@@ -66,7 +66,7 @@ steps:
     deploymentMode: 'Validation'
 
 - task: AzureResourceManagerTemplateDeployment@3
-#deployment of the VM node 1 cluster pacemaker
+  name: "deployment_node1_cluster_pacemaker"
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'connection-deployment-test'
@@ -80,7 +80,7 @@ steps:
     deploymentMode: 'Validation'
 
 - task: AzureResourceManagerTemplateDeployment@3
-#deployment of the VM node 2 cluster pacemaker
+  name: "deployment_node2_cluster_pacemaker"
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'connection-deployment-test'
@@ -94,7 +94,7 @@ steps:
     deploymentMode: 'Validation'
 
 - task: AzureResourceManagerTemplateDeployment@3
-#deployment of LB
+  name: "deployment_LB"
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'connection-deployment-test'
