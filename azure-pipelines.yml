@@ -107,9 +107,3 @@ steps:
     csmParametersFile: './LoadBalancer/parametersLB.json'
     deploymentMode: 'Validation'
 
-- task: ARM Outputs@5
-  inputs:
-    ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
-    ConnectedServiceNameARM: 'connection-deployment-test'
-    resourceGroupName: 'pacemaker-cluster'
-    whenLastDeploymentIsFailed: 'fail'
