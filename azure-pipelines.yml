@@ -115,7 +115,7 @@ stages:
           csmParametersFile: './LoadBalancer/parametersLB.json'
           deploymentMode: 'Validation'
 
-- stage: Infra
+- stage: Artifacts
   dependsOn: 
   - Foundation
   - Infra
