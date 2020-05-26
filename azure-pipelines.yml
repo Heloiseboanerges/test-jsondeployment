@@ -28,6 +28,13 @@ stages:
 ##testing the output ##
           deploymentOutputs: armDeployment
 
+      - task: ARM Outputs@5
+        inputs:
+          ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
+          ConnectedServiceNameARM: 'connection-deployment-test'
+          resourceGroupName: 'pacemaker-cluster'
+          whenLastDeploymentIsFailed: 'fail'
+
       - task: AzureResourceManagerTemplateDeployment@3
         name: "deployment_PPG"
         inputs:
