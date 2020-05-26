@@ -13,7 +13,7 @@ steps:
 #deployment of the VNET
   inputs:
     deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'suscription_Helo'
+    azureResourceManagerConnection: 'connection-deployment-test'
     subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'Pacemaker_cluster'
@@ -27,7 +27,7 @@ steps:
 #deployment of the PPG
   inputs:
     deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'suscription_Helo'
+    azureResourceManagerConnection: 'connection-deployment-test'
     subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'Pacemaker_cluster'
@@ -41,7 +41,7 @@ steps:
 #deployment of the PPG-1
   inputs:
     deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'suscription_Helo'
+    azureResourceManagerConnection: 'connection-deployment-test'
     subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'Pacemaker_cluster'
@@ -55,7 +55,7 @@ steps:
 #deployment of the diagnostics storage account
   inputs:
     deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'suscription_Helo'
+    azureResourceManagerConnection: 'connection-deployment-test'
     subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'Pacemaker_cluster'
@@ -69,7 +69,7 @@ steps:
 #deployment of the VM node 1 cluster pacemaker
   inputs:
     deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'suscription_Helo'
+    azureResourceManagerConnection: 'connection-deployment-test'
     subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'Pacemaker_cluster'
@@ -83,7 +83,7 @@ steps:
 #deployment of the VM node 2 cluster pacemaker
   inputs:
     deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'suscription_Helo'
+    azureResourceManagerConnection: 'connection-deployment-test'
     subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'Pacemaker_cluster'
@@ -97,7 +97,7 @@ steps:
 #deployment of LB
   inputs:
     deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'suscription_Helo'
+    azureResourceManagerConnection: 'connection-deployment-test'
     subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'Pacemaker_cluster'
