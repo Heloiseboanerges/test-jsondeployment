@@ -126,5 +126,4 @@ stages:
         inputs:
           connection: 'github.com_Heloiseboanerges'
           userRepository: 'Heloiseboanerges/test-jsondeployment'
-          defaultVersionType: 'latest'
           downloadPath: '$(System.ArtifactsDirectory)'
