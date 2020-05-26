@@ -25,6 +25,8 @@ stages:
           csmFile: './vnet/VNET.json'
           csmParametersFile: './vnet/parametersFile.json'
           deploymentMode: 'Validation'
+##testing the output ##
+          deploymentOutputs: armDeployment
 
       - task: AzureResourceManagerTemplateDeployment@3
         name: "deployment_PPG"
