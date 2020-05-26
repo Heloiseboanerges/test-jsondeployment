@@ -5,105 +5,106 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-16.04'
-
   container: ubuntu:16.04
 
-steps:
-- task: AzureResourceManagerTemplateDeployment@3
-  name: "deployment_VNET"
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'connection-deployment-test'
-    subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'Pacemaker_cluster'
-    location: 'France Central'
-    templateLocation: 'Linked artifact'
-    csmFile: './vnet/VNET.json'
-    csmParametersFile: './vnet/parametersFile.json'
-    deploymentMode: 'Validation'
+jobs:
+- job: "Ejemplo_job"
+  steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      name: "deployment_VNET"
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'connection-deployment-test'
+        subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'Pacemaker_cluster'
+        location: 'France Central'
+        templateLocation: 'Linked artifact'
+        csmFile: './vnet/VNET.json'
+        csmParametersFile: './vnet/parametersFile.json'
+        deploymentMode: 'Validation'
 
-- task: AzureResourceManagerTemplateDeployment@3
-  name: "deployment_PPG"
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'connection-deployment-test'
-    subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'Pacemaker_cluster'
-    location: 'France Central'
-    templateLocation: 'Linked artifact'
-    csmFile: './Proximity-placement-group/template.json'
-    csmParametersFile: './Proximity-placement-group/parameters.json'
-    deploymentMode: 'Validation'
+    - task: AzureResourceManagerTemplateDeployment@3
+      name: "deployment_PPG"
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'connection-deployment-test'
+        subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'Pacemaker_cluster'
+        location: 'France Central'
+        templateLocation: 'Linked artifact'
+        csmFile: './Proximity-placement-group/template.json'
+        csmParametersFile: './Proximity-placement-group/parameters.json'
+        deploymentMode: 'Validation'
 
-- task: AzureResourceManagerTemplateDeployment@3
-  name: "deployment_PPG_1"
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'connection-deployment-test'
-    subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'Pacemaker_cluster'
-    location: 'France Central'
-    templateLocation: 'Linked artifact'
-    csmFile: './Proximity-placement-group/template.json'
-    csmParametersFile: './Proximity-placement-group/parameters-2.json'
-    deploymentMode: 'Validation'
+    - task: AzureResourceManagerTemplateDeployment@3
+      name: "deployment_PPG_1"
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'connection-deployment-test'
+        subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'Pacemaker_cluster'
+        location: 'France Central'
+        templateLocation: 'Linked artifact'
+        csmFile: './Proximity-placement-group/template.json'
+        csmParametersFile: './Proximity-placement-group/parameters-2.json'
+        deploymentMode: 'Validation'
 
-- task: AzureResourceManagerTemplateDeployment@3
-  name: "deployment_diagnostics_storage_account"
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'connection-deployment-test'
-    subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'Pacemaker_cluster'
-    location: 'France Central'
-    templateLocation: 'Linked artifact'
-    csmFile: './storage_account/template.json'
-    csmParametersFile: './storage_account/parameters.json'
-    deploymentMode: 'Validation'
+    - task: AzureResourceManagerTemplateDeployment@3
+      name: "deployment_diagnostics_storage_account"
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'connection-deployment-test'
+        subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'Pacemaker_cluster'
+        location: 'France Central'
+        templateLocation: 'Linked artifact'
+        csmFile: './storage_account/template.json'
+        csmParametersFile: './storage_account/parameters.json'
+        deploymentMode: 'Validation'
 
-- task: AzureResourceManagerTemplateDeployment@3
-  name: "deployment_node1_cluster_pacemaker"
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'connection-deployment-test'
-    subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'Pacemaker_cluster'
-    location: 'France Central'
-    templateLocation: 'Linked artifact'
-    csmFile: './VM/template.json'
-    csmParametersFile: './VM/parametersFile.json'
-    deploymentMode: 'Validation'
+    - task: AzureResourceManagerTemplateDeployment@3
+      name: "deployment_node1_cluster_pacemaker"
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'connection-deployment-test'
+        subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'Pacemaker_cluster'
+        location: 'France Central'
+        templateLocation: 'Linked artifact'
+        csmFile: './VM/template.json'
+        csmParametersFile: './VM/parametersFile.json'
+        deploymentMode: 'Validation'
 
-- task: AzureResourceManagerTemplateDeployment@3
-  name: "deployment_node2_cluster_pacemaker"
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'connection-deployment-test'
-    subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'Pacemaker_cluster'
-    location: 'France Central'
-    templateLocation: 'Linked artifact'
-    csmFile: './VM/template.json'
-    csmParametersFile: './VM/parametersFile1.json'
-    deploymentMode: 'Validation'
+    - task: AzureResourceManagerTemplateDeployment@3
+      name: "deployment_node2_cluster_pacemaker"
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'connection-deployment-test'
+        subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'Pacemaker_cluster'
+        location: 'France Central'
+        templateLocation: 'Linked artifact'
+        csmFile: './VM/template.json'
+        csmParametersFile: './VM/parametersFile1.json'
+        deploymentMode: 'Validation'
 
-- task: AzureResourceManagerTemplateDeployment@3
-  name: "deployment_LB"
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'connection-deployment-test'
-    subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'Pacemaker_cluster'
-    location: 'North Europe'
-    templateLocation: 'Linked artifact'
-    csmFile: './LoadBalancer/templateLB.json'
-    csmParametersFile: './LoadBalancer/parametersLB.json'
-    deploymentMode: 'Validation'
+    - task: AzureResourceManagerTemplateDeployment@3
+      name: "deployment_LB"
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'connection-deployment-test'
+        subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'Pacemaker_cluster'
+        location: 'North Europe'
+        templateLocation: 'Linked artifact'
+        csmFile: './LoadBalancer/templateLB.json'
+        csmParametersFile: './LoadBalancer/parametersLB.json'
+        deploymentMode: 'Validation'
 
