@@ -107,8 +107,9 @@ steps:
     csmParametersFile: './LoadBalancer/parametersLB.json'
     deploymentMode: 'Validation'
 
-- task: PublishBuildArtifacts@1
+- task: ARM Outputs@5
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
+    ConnectedServiceNameARM: 'connection-deployment-test'
+    resourceGroupName: 'pacemaker-cluster'
+    whenLastDeploymentIsFailed: 'fail'
