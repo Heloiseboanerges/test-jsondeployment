@@ -40,5 +40,10 @@
             "tags": {}
         }
     ],
-    "outputs": {}
+    "outputs": {
+        "resourceID": {
+            "type": "object",
+            "value": "[reference(ResourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')))]"
+        }
+    }
 }
