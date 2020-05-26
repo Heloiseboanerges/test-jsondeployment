@@ -25,15 +25,6 @@ stages:
           csmFile: './vnet/VNET.json'
           csmParametersFile: './vnet/parametersFile.json'
           deploymentMode: 'Validation'
-##testing the output ##
-          deploymentOutputs: armDeployment
-
-      - task: ARM Outputs@5
-        inputs:
-          ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
-          ConnectedServiceNameARM: 'connection-deployment-test'
-          resourceGroupName: 'pacemaker-cluster'
-          whenLastDeploymentIsFailed: 'fail'
 
       - task: AzureResourceManagerTemplateDeployment@3
         name: "deployment_PPG"
@@ -124,3 +115,12 @@ stages:
           csmParametersFile: './LoadBalancer/parametersLB.json'
           deploymentMode: 'Validation'
 
+      - task: DownloadBuildArtifacts@0
+        inputs:
+          buildType: 'specific'
+          project: 'b979bcd6-c8d5-46df-ac7d-b85bfaaf0d31'
+          pipeline: '10'
+          specificBuildWithTriggering: true
+          buildVersionToDownload: 'latest'
+          downloadType: 'specific'
+          downloadPath: '$(System.ArtifactsDirectory)'
