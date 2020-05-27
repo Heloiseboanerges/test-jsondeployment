@@ -70,15 +70,16 @@ stages:
           deploymentMode: 'Validation'
 
 
-      - task: ManualIntervention@8
-        inputs:
-          instructions: 'Autorizar'
-
 - stage: Infra
   dependsOn: Foundation
   jobs:
   - job: "Infra"
     steps:
+
+      - task: ManualIntervention@8
+        inputs:
+          instructions: 'Autorizar'
+
       - task: AzureResourceManagerTemplateDeployment@3
         name: "deployment_node1_cluster_pacemaker"
         inputs:
