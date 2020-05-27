@@ -123,7 +123,9 @@ stages:
   - job: "bajar_plantillas"
     steps:
       - task: DownloadGitHubRelease@0
+        displayName: 'Download GitHub Release'
         inputs:
           connection: 'github.com_Heloiseboanerges'
           userRepository: 'Heloiseboanerges/test-jsondeployment'
-          downloadPath: '$(System.ArtifactsDirectory)'
+
+
