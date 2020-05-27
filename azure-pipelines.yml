@@ -123,6 +123,15 @@ stages:
                 csmFile: './LoadBalancer/templateLB.json'
                 csmParametersFile: './LoadBalancer/parametersLB.json'
                 deploymentMode: 'Validation'
+            
+            - task: DownloadBuildArtifacts@0
+              inputs:
+                buildType: 'specific'
+                project: 'b979bcd6-c8d5-46df-ac7d-b85bfaaf0d31'
+                pipeline: '10'
+                buildVersionToDownload: 'latest'
+                downloadType: 'specific'
+                downloadPath: '$(System.ArtifactsDirectory)'
 
 
 
