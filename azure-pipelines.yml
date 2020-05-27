@@ -25,6 +25,7 @@ stages:
           csmFile: './vnet/VNET.json'
           csmParametersFile: './vnet/parametersFile.json'
           deploymentMode: 'Validation'
+           
 
       - task: AzureResourceManagerTemplateDeployment@3
         name: "deployment_PPG"
@@ -67,6 +68,11 @@ stages:
           csmFile: './storage_account/template.json'
           csmParametersFile: './storage_account/parameters.json'
           deploymentMode: 'Validation'
+
+
+      - task: ManualIntervention@8
+        inputs:
+          instructions: 'Autorizar'
 
 - stage: Infra
   dependsOn: Foundation
@@ -114,7 +120,6 @@ stages:
           csmFile: './LoadBalancer/templateLB.json'
           csmParametersFile: './LoadBalancer/parametersLB.json'
           deploymentMode: 'Validation'
-
 
 
 
