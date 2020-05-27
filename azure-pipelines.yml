@@ -4,8 +4,8 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-16.04'
-  container: ubuntu:16.04
+  vmImage: 'windows-latest'
+  container: 'windows-latest'
 
 stages:
 - stage: Foundation
@@ -127,4 +127,4 @@ stages:
           connection: 'github.com_Heloiseboanerges'
           userRepository: 'Heloiseboanerges/test-jsondeployment'
           downloadPath: '$(System.ArtifactsDirectory)'
-          defaultVersionType: latest
+          defaultVersionType: 'Latest'
