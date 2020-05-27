@@ -81,7 +81,8 @@ stages:
       runOnce:
        preDeploy:
          steps:
-           - script: checkout
+         - checkout: self
+           
        deploy:
           steps:
             - task: AzureResourceManagerTemplateDeployment@3
