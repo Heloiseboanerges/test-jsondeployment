@@ -115,17 +115,6 @@ stages:
           csmParametersFile: './LoadBalancer/parametersLB.json'
           deploymentMode: 'Validation'
 
-- stage: Artifacts
-  dependsOn: 
-  - Foundation
-  - Infra
-  jobs:
-  - job: "bajar_plantillas"
-    steps:
-      - task: DownloadGitHubRelease@0
-        displayName: 'Download GitHub Release'
-        inputs:
-          connection: 'github.com_Heloiseboanerges'
-          userRepository: 'Heloiseboanerges/test-jsondeployment'
+
 
 
