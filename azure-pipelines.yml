@@ -12,6 +12,7 @@ stages:
   jobs:
   - job: "Foundation"
     steps:
+      - download: current
 
       - task: AzureResourceManagerTemplateDeployment@3
         name: "deployment_VNET"
@@ -80,7 +81,6 @@ stages:
       runOnce:
         deploy:
           steps:
-            - checkout: none
             - task: AzureResourceManagerTemplateDeployment@3
               name: "deployment_node1_cluster_pacemaker"
               inputs:
