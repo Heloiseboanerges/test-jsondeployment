@@ -71,9 +71,9 @@ stages:
 
 
 - stage: Infra
+  dependsOn: Foundation
   jobs: 
   - deployment: "Infra"
-    dependsOn: Foundation
     environment: 'test'
     strategy: 
       runOnce:
