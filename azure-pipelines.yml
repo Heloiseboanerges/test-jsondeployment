@@ -12,6 +12,7 @@ stages:
   jobs:
   - job: "Foundation"
     steps:
+      - checkout: none
       - task: AzureResourceManagerTemplateDeployment@3
         name: "deployment_VNET"
         inputs:
