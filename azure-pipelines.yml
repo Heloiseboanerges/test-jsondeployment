@@ -79,7 +79,10 @@ stages:
     environment: 'test'
     strategy: 
       runOnce:
-        deploy:
+       preDeploy:
+         steps:
+           - script: checkout
+       deploy:
           steps:
             - task: AzureResourceManagerTemplateDeployment@3
               name: "deployment_node1_cluster_pacemaker"
