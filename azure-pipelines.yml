@@ -128,18 +128,15 @@ stages:
 - stage: Artifacts
   dependsOn: Infra
   jobs: 
-  - deployment:
-    strategy: 
-      runOnce:
-       deploy:
-          steps:
-            - task: DownloadGitHubRelease@0
-              inputs:
-                connection: 'github.com_Heloiseboanerges'
-                userRepository: 'Heloiseboanerges/test-jsondeployment'
-                defaultVersionType: 'latest'
-                version: '$(Build.SourceVersion)'
-                downloadPath: '$(System.ArtifactsDirectory)'
+  - job: "Artifacts"
+    steps:
+        - task: DownloadGitHubRelease@0
+          inputs:
+            connection: 'github.com_Heloiseboanerges'
+            userRepository: 'Heloiseboanerges/test-jsondeployment'
+            defaultVersionType: 'latest'
+            version: '$(Build.SourceVersion)'
+            downloadPath: '$(System.ArtifactsDirectory)'
 
                 
 
