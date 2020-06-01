@@ -82,6 +82,7 @@ stages:
        deploy:
           steps:
             - checkout: self
+            #para que haga el checkout y cargue los sources necesarios. Al ser "deployment" no es automático
             - task: AzureResourceManagerTemplateDeployment@3
               name: "deployment_node1_cluster_pacemaker"
               inputs:
@@ -123,7 +124,15 @@ stages:
                 csmFile: './LoadBalancer/templateLB.json'
                 csmParametersFile: './LoadBalancer/parametersLB.json'
                 deploymentMode: 'Validation'
-            
+
+- stage: Artifacts
+  dependsOn: Infra
+  jobs: 
+  - deployment:
+    strategy: 
+      runOnce:
+       deploy:
+          steps:
             - task: DownloadGitHubRelease@0
               inputs:
                 connection: 'github.com_Heloiseboanerges'
@@ -131,6 +140,7 @@ stages:
                 defaultVersionType: 'latest'
                 version: '$(Build.SourceVersion)'
                 downloadPath: '$(System.ArtifactsDirectory)'
+
                 
 
 
