@@ -125,18 +125,12 @@ stages:
                 csmParametersFile: './LoadBalancer/parametersLB.json'
                 deploymentMode: 'Validation'
 
-- stage: Artifacts
-  dependsOn: Infra
-  jobs: 
-  - job: "Artifacts"
-    steps:
-        - task: DownloadGitHubRelease@0
-          inputs:
-            connection: 'github.com_Heloiseboanerges'
-            userRepository: 'Heloiseboanerges/test-jsondeployment'
-            defaultVersionType: 'latest'
-            version: '$(Build.SourceVersion)'
-            downloadPath: '$(System.ArtifactsDirectory)'
+            - task: CopyFiles@2
+              inputs:
+                Contents: '**'
+                TargetFolder: '$(build.artifactstagingdirectory)'
+                OverWrite: true
+
 
                 
 
