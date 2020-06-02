@@ -16,7 +16,6 @@ stages:
   - job: "Foundation"
     steps:
       - download: current
-
       - task: AzureResourceManagerTemplateDeployment@3
         name: "deployment_VNET"
         inputs:
@@ -36,8 +35,8 @@ stages:
         name: "deployment_PPG"
         inputs:
           deploymentScope: 'Resource Group'
-          azureResourceManagerConnection: 'connection-deployment-test'
-          subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+          azureResourceManagerConnection: $(connection)
+          subscriptionId: $(subscriptionId)
           action: 'Create Or Update Resource Group'
           resourceGroupName: 'Pacemaker_cluster'
           location: 'France Central'
@@ -50,8 +49,8 @@ stages:
         name: "deployment_PPG_1"
         inputs:
           deploymentScope: 'Resource Group'
-          azureResourceManagerConnection: 'connection-deployment-test'
-          subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+          azureResourceManagerConnection: $(connection)
+          subscriptionId: $(subscriptionId)
           action: 'Create Or Update Resource Group'
           resourceGroupName: 'Pacemaker_cluster'
           location: 'France Central'
@@ -64,8 +63,8 @@ stages:
         name: "deployment_diagnostics_storage_account"
         inputs:
           deploymentScope: 'Resource Group'
-          azureResourceManagerConnection: 'connection-deployment-test'
-          subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+          azureResourceManagerConnection: $(connection)
+          subscriptionId: $(subscriptionId)
           action: 'Create Or Update Resource Group'
           resourceGroupName: 'Pacemaker_cluster'
           location: 'France Central'
@@ -90,8 +89,8 @@ stages:
               name: "deployment_node1_cluster_pacemaker"
               inputs:
                 deploymentScope: 'Resource Group'
-                azureResourceManagerConnection: 'connection-deployment-test'
-                subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+                azureResourceManagerConnection: $(connection)
+                subscriptionId: $(subscriptionId)
                 action: 'Create Or Update Resource Group'
                 resourceGroupName: 'Pacemaker_cluster'
                 location: 'France Central'
@@ -104,8 +103,8 @@ stages:
               name: "deployment_node2_cluster_pacemaker"
               inputs:
                 deploymentScope: 'Resource Group'
-                azureResourceManagerConnection: 'connection-deployment-test'
-                subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+                azureResourceManagerConnection: $(connection)
+                subscriptionId: $(subscriptionId)
                 action: 'Create Or Update Resource Group'
                 resourceGroupName: 'Pacemaker_cluster'
                 location: 'France Central'
@@ -118,8 +117,8 @@ stages:
               name: "deployment_LB"
               inputs:
                 deploymentScope: 'Resource Group'
-                azureResourceManagerConnection: 'connection-deployment-test'
-                subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+                azureResourceManagerConnection: $(connection)
+                subscriptionId: $(subscriptionId)
                 action: 'Create Or Update Resource Group'
                 resourceGroupName: 'Pacemaker_cluster'
                 location: 'North Europe'
