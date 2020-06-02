@@ -7,6 +7,9 @@ pool:
   vmImage: 'windows-latest'
   container: 'windows-latest'
 
+variables:
+- group: Connection
+
 stages:
 - stage: Foundation
   jobs:
@@ -18,8 +21,8 @@ stages:
         name: "deployment_VNET"
         inputs:
           deploymentScope: 'Resource Group'
-          azureResourceManagerConnection: 'connection-deployment-test'
-          subscriptionId: '714f1d31-e6fc-4955-acef-4e261636a95e'
+          azureResourceManagerConnection: $(connection)
+          subscriptionId: $(subscriptionId)
           action: 'Create Or Update Resource Group'
           resourceGroupName: 'Pacemaker_cluster'
           location: 'France Central'
