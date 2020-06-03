@@ -103,7 +103,7 @@
                             },
                             "loadBalancerBackendAddressPools": [
                                 {
-                                  "id": "[concat(variables('lbID'), '/backendAddressPools/LoadBalancerBackend')]"
+                                  "id": "[concat(variables('lbID'), '/backendAddressPools/BackendNFS')]"
                                 }
                             ],
                             "privateIPAddress": "[parameters('privateIPAddress')]",
