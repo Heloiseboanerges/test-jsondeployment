@@ -20,12 +20,6 @@
         "privateIPAddress": {
             "type": "string"
         },
-        "publicIpAddressType": {
-            "type": "string"
-        },
-        "publicIpAddressSku": {
-            "type": "string"
-        },
         "virtualMachineName": {
             "type": "string"
         },
@@ -83,8 +77,7 @@
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
         "nicName" : "[concat(parameters('virtualMachineName'),'-NIC-01')]",
         "networkSecurityGroupName" : "[concat(variables('nicName'),'-NSG')]",
-        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
-        "publicIpAddressName" : "[concat(parameters('virtualMachineName'),'-PIP')]"
+        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
 
     },
     "resources": [
@@ -94,8 +87,7 @@
             "apiVersion": "2019-07-01",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[concat('Microsoft.Network/networkSecurityGroups/', variables('networkSecurityGroupName'))]",
-                "[concat('Microsoft.Network/publicIpAddresses/', variables('publicIpAddressName'))]"
+                "[concat('Microsoft.Network/networkSecurityGroups/', variables('networkSecurityGroupName'))]"
             ],
             "properties": {
                 "ipConfigurations": [
@@ -106,10 +98,7 @@
                                 "id": "[variables('subnetRef')]"
                             },
                             "privateIPAddress": "[parameters('privateIPAddress')]",
-                            "privateIPAllocationMethod": "Static",
-                            "publicIpAddress": {
-                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', variables('publicIpAddressName'))]"
-                            }
+                            "privateIPAllocationMethod": "Static"
                         }
                     }
                 ],
@@ -127,21 +116,6 @@
             "properties": {
                 "securityRules": "[parameters('networkSecurityGroupRules')]"
             }
-        },
-        {
-            "name": "[variables('publicIpAddressName')]",
-            "type": "Microsoft.Network/publicIPAddresses",
-            "apiVersion": "2019-02-01",
-            "location": "[parameters('location')]",
-            "properties": {
-                "publicIpAllocationMethod": "[parameters('publicIpAddressType')]"
-            },
-            "sku": {
-                "name": "[parameters('publicIpAddressSku')]"
-            },
-            "zones": [
-                "[parameters('zone')]"
-            ]
         },
         {
             "name": "[parameters('dataDiskResources')[copyIndex()].name]",
