@@ -85,6 +85,21 @@ stages:
           steps:
             - checkout: self
             #para que haga el checkout y cargue los sources necesarios. Al ser "deployment" no es automático
+            
+            - task: AzureResourceManagerTemplateDeployment@3
+              name: "deployment_LB"
+              inputs:
+                deploymentScope: 'Resource Group'
+                azureResourceManagerConnection: $(connection)
+                subscriptionId: $(subscriptionId)
+                action: 'Create Or Update Resource Group'
+                resourceGroupName: 'Pacemaker_cluster'
+                location: 'North Europe'
+                templateLocation: 'Linked artifact'
+                csmFile: './LoadBalancer/templateLB.json'
+                csmParametersFile: './LoadBalancer/parametersLB.json'
+                deploymentMode: 'Validation'
+
             - task: AzureResourceManagerTemplateDeployment@3
               name: "deployment_node1_cluster_pacemaker"
               inputs:
@@ -111,48 +126,6 @@ stages:
                 templateLocation: 'Linked artifact'
                 csmFile: './VM/template.json'
                 csmParametersFile: './VM/parametersFile1.json'
-                deploymentMode: 'Validation'
-
-            - task: AzureResourceManagerTemplateDeployment@3
-              name: "deployment_LB"
-              inputs:
-                deploymentScope: 'Resource Group'
-                azureResourceManagerConnection: $(connection)
-                subscriptionId: $(subscriptionId)
-                action: 'Create Or Update Resource Group'
-                resourceGroupName: 'Pacemaker_cluster'
-                location: 'North Europe'
-                templateLocation: 'Linked artifact'
-                csmFile: './LoadBalancer/templateLB.json'
-                csmParametersFile: './LoadBalancer/parametersLB.json'
-                deploymentMode: 'Validation'
-
-            - task: AzureResourceManagerTemplateDeployment@3
-              name: "config_LB"
-              inputs:
-                deploymentScope: 'Resource Group'
-                azureResourceManagerConnection: $(connection)
-                subscriptionId: $(subscriptionId)
-                action: 'Create Or Update Resource Group'
-                resourceGroupName: 'Pacemaker_cluster'
-                location: 'North Europe'
-                templateLocation: 'Linked artifact'
-                csmFile: './NIC-LB-join/NIC-LB-join.json'
-                csmParametersFile: './NIC-LB-join/parametersNIC1-LB-join.json'
-                deploymentMode: 'Validation'
-
-            - task: AzureResourceManagerTemplateDeployment@3
-              name: "config_LB_2"
-              inputs:
-                deploymentScope: 'Resource Group'
-                azureResourceManagerConnection: $(connection)
-                subscriptionId: $(subscriptionId)
-                action: 'Create Or Update Resource Group'
-                resourceGroupName: 'Pacemaker_cluster'
-                location: 'North Europe'
-                templateLocation: 'Linked artifact'
-                csmFile: './NIC-LB-join/NIC-LB-join.json'
-                csmParametersFile: './NIC-LB-join/parametersNIC2-LB-join.json'
                 deploymentMode: 'Validation'
 
             - task: CopyFiles@2
