@@ -7,9 +7,16 @@
         },
         "lbName": {
             "type":"string"
-        }
-    },
+        },
+        "vnetName": {
+          "type":"string"
+        },
+        "subnetName": {
+        "type":"string"
+    }
+},
     "variables": {
+      "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), variables ('subnetName'))]",
         "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]"
     },
     "resources": [
@@ -25,6 +32,9 @@
           {
             "name": "ipconfig1",
             "properties": {
+              "subnet": {
+                "id": "[variables('subnetRef')]"
+              },
               "loadBalancerBackendAddressPools": [
                 {
                   "id": "[concat(variables('lbID'), '/backendAddressPools/LoadBalancerBackend')]"
