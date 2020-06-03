@@ -16,7 +16,7 @@
     }
 },
     "variables": {
-      "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), variables ('subnetName'))]",
+      "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('subnetName'))]",
         "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]"
     },
     "resources": [
