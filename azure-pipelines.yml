@@ -127,6 +127,34 @@ stages:
                 csmParametersFile: './LoadBalancer/parametersLB.json'
                 deploymentMode: 'Validation'
 
+            - task: AzureResourceManagerTemplateDeployment@3
+              name: "config_LB"
+              inputs:
+                deploymentScope: 'Resource Group'
+                azureResourceManagerConnection: $(connection)
+                subscriptionId: $(subscriptionId)
+                action: 'Create Or Update Resource Group'
+                resourceGroupName: 'Pacemaker_cluster'
+                location: 'North Europe'
+                templateLocation: 'Linked artifact'
+                csmFile: './NIC-LB-join/NIC-LB-join.json'
+                csmParametersFile: './NIC-LB-join/parametersNIC1-LB-join.json'
+                deploymentMode: 'Validation'
+
+            - task: AzureResourceManagerTemplateDeployment@3
+              name: "config_LB_2"
+              inputs:
+                deploymentScope: 'Resource Group'
+                azureResourceManagerConnection: $(connection)
+                subscriptionId: $(subscriptionId)
+                action: 'Create Or Update Resource Group'
+                resourceGroupName: 'Pacemaker_cluster'
+                location: 'North Europe'
+                templateLocation: 'Linked artifact'
+                csmFile: './NIC-LB-join/NIC-LB-join.json'
+                csmParametersFile: './NIC-LB-join/parametersNIC2-LB-join.json'
+                deploymentMode: 'Validation'
+
             - task: CopyFiles@2
               inputs:
                 Contents: '**'
