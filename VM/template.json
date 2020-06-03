@@ -70,6 +70,9 @@
         },
         "autoShutdownNotificationLocale": {
             "type": "string"
+        },
+        "lbName": {
+            "type": "string"
         }
     },
     "variables": {
@@ -77,7 +80,8 @@
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
         "nicName" : "[concat(parameters('virtualMachineName'),'-NIC-01')]",
         "networkSecurityGroupName" : "[concat(variables('nicName'),'-NSG')]",
-        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
+        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
+        "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]"
 
     },
     "resources": [
@@ -97,6 +101,11 @@
                             "subnet": {
                                 "id": "[variables('subnetRef')]"
                             },
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                  "id": "[concat(variables('lbID'), '/backendAddressPools/LoadBalancerBackend')]"
+                                }
+                            ],
                             "privateIPAddress": "[parameters('privateIPAddress')]",
                             "privateIPAllocationMethod": "Static"
                         }

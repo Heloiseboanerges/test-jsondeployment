@@ -113,6 +113,9 @@
     },
     "autoShutdownNotificationLocale": {
       "value": "en"
-    }
+    },
+    "lbName": {
+      "value": "NFS"
+  }
   }
 }
