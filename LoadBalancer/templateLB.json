@@ -35,7 +35,7 @@
             "networkSecurityGroupName" : "[concat(parameters('lbName'),'-NSG')]",
             "networkSecurityGroupId" : "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
             "publicIPAddressName": "[concat(parameters('lbName'),'-PIP')]",
-            "publicIPAddressId" : "[reference(resourceId(resourceGroup().Id,'Microsoft.Network/publicIPAddresses',variables('publicIPAddressName')))]"
+            "publicIPAddressId" : "[reference(resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName')))]"
         },
     "resources": [
       {
