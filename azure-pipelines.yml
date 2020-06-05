@@ -16,6 +16,21 @@ stages:
   - job: "Foundation"
     steps:
       - download: current
+
+      - task: AzureResourceManagerTemplateDeployment@3
+        name: "deployment_VNET"
+        inputs:
+          deploymentScope: 'Resource Group'
+          azureResourceManagerConnection: $(connection)
+          subscriptionId: $(subscriptionId)
+          action: 'Create Or Update Resource Group'
+          resourceGroupName: 'Pacemaker_cluster'
+          location: 'France Central'
+          templateLocation: 'Linked artifact'
+          csmFile: './vnet-NSG/VNET-nsg.json'
+          csmParametersFile: './vnet-NSG/VNET-nsg-parameters.json'
+          deploymentMode: 'Validation'
+
       - task: AzureResourceManagerTemplateDeployment@3
         name: "deployment_VNET"
         inputs:

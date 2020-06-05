@@ -19,6 +19,9 @@
         },
         "subnetAddressPrefix": {
             "type": "string"
+        },
+        "networkSecurityGroupId": {
+            "type": "string"
         }
     },
     "resources": [
@@ -38,7 +41,10 @@
                         "name": "[parameters('subnetName')]",
                         "properties": {
                             "addressPrefix": "[parameters('subnetAddressPrefix')]",
-                            "addressPrefixes": []
+                            "addressPrefixes": [],         
+                             "networkSecurityGroup": { 
+                                "id": "[parameters('networkSecurityGroupId')]"
+                             }
                         }
                     }
                 ]

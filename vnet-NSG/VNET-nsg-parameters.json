@@ -1,0 +1,59 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "northeurope"
+        },
+        "networkSecurityGroupName": {
+          "value": "VNET_cluster_NSG"
+      },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                  "name": "ssh",
+                  "properties": {
+                    "priority": 1010,
+                    "protocol": "TCP",
+                    "access": "Allow",
+                    "direction": "Inbound",
+                    "sourceApplicationSecurityGroups": [],
+                    "destinationApplicationSecurityGroups": [],
+                    "sourceAddressPrefix": "*",
+                    "sourcePortRange": "*",
+                    "destinationAddressPrefix": "*",
+                    "destinationPortRange": "22"
+                  }
+                },
+                {
+                "name": "Allow-LB_out",
+                "properties": {
+                  "description": "Allow LB traffic Out",
+                  "protocol": "*",
+                  "sourcePortRange": "*",
+                  "destinationPortRange": "*",
+                  "sourceAddressPrefix": "*",
+                  "destinationAddressPrefix": "AzureLoadBalancer",
+                  "access": "Allow",
+                  "priority": 1011,
+                  "direction": "Outbound"
+                }
+                },
+                {
+                    "name": "Allow-LB-in",
+                    "properties": {
+                      "description": "Allow LB traffic IN",
+                      "protocol": "*",
+                      "sourcePortRange": "*",
+                      "destinationPortRange": "*",
+                      "sourceAddressPrefix": "*",
+                      "destinationAddressPrefix": "AzureLoadBalancer",
+                      "access": "Allow",
+                      "priority": 1012,
+                      "direction": "Inbound"
+                    }
+              }
+            ]
+        }
+    }
+}
