@@ -35,7 +35,7 @@
             "networkSecurityGroupName" : "[concat(parameters('lbName'),'-NSG')]",
             "networkSecurityGroupId" : "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
             "publicIPAddressName": "[concat(parameters('lbName'),'-PIP')]",
-            "publicIPAddressId" : "[reference(resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName')))]"
+            "publicIPAddressId" : "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
         },
     "resources": [
       {
@@ -78,7 +78,7 @@
                         "name": "NFSFrontEnd",
                         "properties": {
                           "publicIPAddress": {
-                            "id": "[variables('publicIPAddressId')"
+                            "id": "[variables('publicIPAddressId')]"
                         },
                             "subnet": {
                                 "id": "[parameters('subnetId')]",
@@ -148,5 +148,11 @@
             }
         }
 
-    ]
+    ],
+    "outputs": {
+      "publicIPAddressNameId": {
+        "type": "string",
+        "value": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]"
+    }
+    }
 }
