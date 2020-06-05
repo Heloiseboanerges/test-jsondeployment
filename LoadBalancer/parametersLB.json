@@ -37,20 +37,33 @@
                     "destinationPortRange": "22"
                   }
                 },
-
-            {
-                "name": "Allow-internet",
+                {
+                "name": "Allow-LB_out",
                 "properties": {
-                  "description": "Allow Internet",
+                  "description": "Allow LB traffic Out",
                   "protocol": "*",
                   "sourcePortRange": "*",
                   "destinationPortRange": "*",
                   "sourceAddressPrefix": "*",
-                  "destinationAddressPrefix": "Internet",
+                  "destinationAddressPrefix": "AzureLoadBalancer",
                   "access": "Allow",
                   "priority": 1011,
                   "direction": "Outbound"
                 }
+                },
+                {
+                    "name": "Allow-LB-in",
+                    "properties": {
+                      "description": "Allow LB traffic IN",
+                      "protocol": "*",
+                      "sourcePortRange": "*",
+                      "destinationPortRange": "*",
+                      "sourceAddressPrefix": "*",
+                      "destinationAddressPrefix": "AzureLoadBalancer",
+                      "access": "Allow",
+                      "priority": 1012,
+                      "direction": "Inbound"
+                    }
               }
             ]
         }
