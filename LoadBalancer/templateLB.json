@@ -27,7 +27,7 @@
             "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]",
             "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/NFSFrontEnd')]",
             "lbPoolID": "[concat(variables('lbID'),'/backendAddressPools/BackendNFS')]",
-            "lbProbeID": "[concat(variables('lbID'),'/probes/NFStcpProbe')]"
+            "lbProbeID": "[concat(variables('lbID'),'/probes/NFStcpProbe')]",
             "publicIPAddressName": "[concat(parameters('lbName'),'-PIP')]",
             "publicIPAddressId" : "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
         },
