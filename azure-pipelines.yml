@@ -18,7 +18,7 @@ stages:
       - download: current
 
       - task: AzureResourceManagerTemplateDeployment@3
-        name: "deployment_VNET-NSG"
+        name: "deployment_VNET_NSG"
         inputs:
           deploymentScope: 'Resource Group'
           azureResourceManagerConnection: $(connection)
