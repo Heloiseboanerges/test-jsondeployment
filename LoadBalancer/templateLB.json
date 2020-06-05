@@ -20,7 +20,10 @@
         },
         "LbprivateIPAddress": {
             "type": "string"
-        }
+        },
+        "networkSecurityGroupRules": {
+          "type": "array"
+      }
 
     },
     "variables":
@@ -28,10 +31,38 @@
             "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]",
             "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/NFSFrontEnd')]",
             "lbPoolID": "[concat(variables('lbID'),'/backendAddressPools/BackendNFS')]",
-            "lbProbeID": "[concat(variables('lbID'),'/probes/NFStcpProbe')]"
+            "lbProbeID": "[concat(variables('lbID'),'/probes/NFStcpProbe')]",
+            "networkSecurityGroupName" : "[concat(parameters('lbName'),'-NSG')]",
+            "networkSecurityGroupId" : "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
+            "publicIPAddressName": "[concat(parameters('lbName'),'-PIP')]",
+            "publicIPAddressId" : "[resourceId( 'Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]"
         },
     "resources": [
-        {
+      {
+        "name": "[variables('networkSecurityGroupName')]",
+        "type": "Microsoft.Network/networkSecurityGroups",
+        "apiVersion": "2019-02-01",
+        "location": "[parameters('location')]",
+        "properties": {
+            "securityRules": "[parameters('networkSecurityGroupRules')]"
+        }
+      },
+      {
+      "apiVersion": "2019-02-01",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[variables('publicIPAddressName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+          "name": "Standard"
+      },
+      "tags": {},
+      "properties": {
+          "publicIPAllocationMethod": "Static",
+          "publicIPAddressVersion": "IPv4",
+          "ipTags": []
+      }
+    },  
+      {
             "name": "[parameters('lbname')]",
             "type": "Microsoft.Network/loadBalancers",
             "apiVersion": "2019-06-01",
@@ -46,11 +77,15 @@
                     {
                         "name": "NFSFrontEnd",
                         "properties": {
-                            "privateIPAllocationMethod": "[parameters('lbprivateIPAllocationMethod')]",
+                          "publicIPAddress": {
+                            "id": "[variables('publicIPAddressId')"
+                        },
                             "subnet": {
-                                "id": "[parameters('subnetId')]"
-                            },
-                            "privateIPAddress": "[parameters('lbprivateIPAddress')]"
+                                "id": "[parameters('subnetId')]",
+                                "networkSecurityGroup": {
+                                  "id": "[variables('networkSecurityGroupId')]"
+                                }
+                            }
                         }
                     }
                 ],

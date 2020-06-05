@@ -19,6 +19,40 @@
         },
         "lbprivateIPAddress": {
             "value": "192.168.0.13"
+        },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                  "name": "ssh",
+                  "properties": {
+                    "priority": 1010,
+                    "protocol": "TCP",
+                    "access": "Allow",
+                    "direction": "Inbound",
+                    "sourceApplicationSecurityGroups": [],
+                    "destinationApplicationSecurityGroups": [],
+                    "sourceAddressPrefix": "*",
+                    "sourcePortRange": "*",
+                    "destinationAddressPrefix": "*",
+                    "destinationPortRange": "22"
+                  }
+                },
+
+            {
+                "name": "Allow-internet",
+                "properties": {
+                  "description": "Allow Internet",
+                  "protocol": "*",
+                  "sourcePortRange": "*",
+                  "destinationPortRange": "*",
+                  "sourceAddressPrefix": "*",
+                  "destinationAddressPrefix": "Internet",
+                  "access": "Allow",
+                  "priority": 1011,
+                  "direction": "Outbound"
+                }
+              }
+            ]
         }
     }
 }
