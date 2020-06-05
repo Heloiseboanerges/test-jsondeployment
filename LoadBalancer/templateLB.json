@@ -79,13 +79,7 @@
                         "properties": {
                           "publicIPAddress": {
                             "id": "[variables('publicIPAddressId')]"
-                        },
-                            "subnet": {
-                                "id": "[parameters('subnetId')]",
-                                "networkSecurityGroup": {
-                                  "id": "[variables('networkSecurityGroupId')]"
-                                }
-                            }
+                        }
                         }
                     }
                 ],
