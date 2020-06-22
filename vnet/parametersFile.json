@@ -21,7 +21,7 @@
       "value": "192.168.0.0/24"
     },
     "networkSecurityGroupId": {
-      "value": "Microsoft.Network/networkSecurityGroups/VNET_cluster_NSG"
+      "value": "/providers/Microsoft.Network/networkSecurityGroups/VNET_cluster_NSG"
   }
   }
 }
