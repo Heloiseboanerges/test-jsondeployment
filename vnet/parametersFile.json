@@ -21,7 +21,7 @@
       "value": "192.168.0.0/24"
     },
     "networkSecurityGroupId": {
-      "value": "/providers/Microsoft.Network/networkSecurityGroups/VNET_cluster_NSG"
+      "value": "/subscriptions/714f1d31-e6fc-4955-acef-4e261636a95e/resourceGroups/Pacemaker_cluster/providers/Microsoft.Network/networkSecurityGroups/VNET_cluster_NSG"
   }
   }
 }
