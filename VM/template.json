@@ -158,6 +158,7 @@
                 },
                 "storageProfile": {
                     "osDisk": {
+                        "diskSizeGB": 64,
 						"name": "[concat('MD-', parameters('virtualMachineName'),'-OS')]",
                         "createOption": "FromImage",
                         "managedDisk": {
