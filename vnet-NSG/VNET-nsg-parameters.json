@@ -52,6 +52,21 @@
                       "priority": 1012,
                       "direction": "Inbound"
                     }
+              },
+              {
+                "name": "NFS",
+                "properties": {
+                  "priority": 1013,
+                  "protocol": "TCP",
+                  "access": "Allow",
+                  "direction": "Inbound",
+                  "sourceApplicationSecurityGroups": [],
+                  "destinationApplicationSecurityGroups": [],
+                  "sourceAddressPrefix": "*",
+                  "sourcePortRange": "*",
+                  "destinationAddressPrefix": "*",
+                  "destinationPortRange": "2049"
+                }
               }
             ]
         }
