@@ -167,8 +167,8 @@
                     },
                     "imageReference": {
                         "publisher": "SUSE",
-                        "offer": "SLES-BYOS",
-                        "sku": "12-sp4",
+                        "offer": "SLES-SAP-BYOS",
+                        "sku": "12-SP4",
                         "version": "latest"
                     },
                     "copy": [
