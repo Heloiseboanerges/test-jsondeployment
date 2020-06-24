@@ -55,7 +55,9 @@
             "sku": {
                 "name": "[parameters('lbsku')]"
             },
-            "dependsOn": [],
+            "dependsOn": [
+              "[variables('publicIPAddressId')]"
+            ],
             "tags": {},
             "properties": {
                 "frontendIPConfigurations": [
