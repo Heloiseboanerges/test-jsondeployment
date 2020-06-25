@@ -3,4 +3,4 @@ SUSEConnect --status
 zypper --quiet patch -y --updatestack-only
 zypper --non-interactive --quiet patch -y --category security
 
-sh /var/lib/waagent/custom-script/download/0/script-config.sh
+sh ./script-config.sh
