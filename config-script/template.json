@@ -1,0 +1,28 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	    "contentVersion": "1.0.0.0",
+		    "resources": [
+{
+  "name": "virtualMachineName/config-app",
+  "type": "Extensions",
+  "location": "[resourceGroup().location]",
+  "apiVersion": "2019-03-01",
+  "dependsOn": [
+    "[concat('Microsoft.Compute/virtualMachines/', concat(variables('vmName'),copyindex()))]"
+  ],
+  "properties": {
+    "publisher": "Microsoft.Azure.Extensions",
+    "type": "CustomScript",
+    "typeHandlerVersion": "2.1",
+    "autoUpgradeMinorVersion": true,
+    "protectedSettings": {         
+"fileUris": [
+ "https://raw.githubusercontent.com/Heloiseboanerges/test-jsondeployment/master/config-script/script.sh" 
+                ],
+                "commandToExecute": "sh script.sh"
+              }
+  }
+
+}
+			]
+}
