@@ -253,7 +253,7 @@
               "autoUpgradeMinorVersion": true,
               "settings": {
                 "fileUris": [
-                  "https://raw.githubusercontent.com/Heloiseboanerges/test-jsondeployment/master/startupscript/script.sh", "https://raw.githubusercontent.com/Heloiseboanerges/test-jsondeployment/master/config-script/script-config.sh"
+                  "https://raw.githubusercontent.com/Heloiseboanerges/test-jsondeployment/master/startupscript/script.sh"
                   
                 ],
                 "commandToExecute": "sh script.sh"
