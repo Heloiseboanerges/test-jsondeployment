@@ -20,6 +20,12 @@
         },
         "LbprivateIPAddress": {
             "type": "string"
+        },
+        "vnetName": {
+          "type": "string"
+        },
+        "subnetName": {
+          "type": "string"
         }
     },
     "variables":
@@ -27,7 +33,8 @@
             "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]",
             "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/NFSFrontEnd')]",
             "lbPoolID": "[concat(variables('lbID'),'/backendAddressPools/BackendNFS')]",
-            "lbProbeID": "[concat(variables('lbID'),'/probes/NFStcpProbe')]"
+            "lbProbeID": "[concat(variables('lbID'),'/probes/NFStcpProbe')]",
+            "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), variables ('subnetName'))]"
         },
     "resources": [  
       {
@@ -46,7 +53,10 @@
                     {
                         "name": "NFSFrontEnd",
                         "properties": {
-                          "privateIPAddress": "[parameters('LBprivateIPAddress')]"
+                          "privateIPAddress": "[parameters('LBprivateIPAddress')]",
+                          "subnet" : {
+                            "id": "[variables('subnetRef')]"
+                          }
                         }
                     }
                 ],

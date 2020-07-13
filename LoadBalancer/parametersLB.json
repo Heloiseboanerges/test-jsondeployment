@@ -19,6 +19,12 @@
         },
         "lbprivateIPAddress": {
             "value": "192.168.0.13"
+        },
+        "vnetName": {
+            "value": "VNET_cluster"
+        },
+          "subnetName": {
+            "value": "machines"
         }
     }
 }
