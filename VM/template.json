@@ -122,7 +122,9 @@
                             ],
                             "privateIPAddress": "[parameters('privateIPAddress')]",
                             "privateIPAllocationMethod": "Static",
-                            "publicIPAddress" : "[variables('pipName')]"
+                            "publicIPAddress" : {
+                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', variables('pipName'))]"
+                            }
                         }
                     }
                 ],
