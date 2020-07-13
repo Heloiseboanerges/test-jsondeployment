@@ -27,26 +27,9 @@
             "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]",
             "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/NFSFrontEnd')]",
             "lbPoolID": "[concat(variables('lbID'),'/backendAddressPools/BackendNFS')]",
-            "lbProbeID": "[concat(variables('lbID'),'/probes/NFStcpProbe')]",
-            "publicIPAddressName": "[concat(parameters('lbName'),'-PIP')]",
-            "publicIPAddressId" : "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
+            "lbProbeID": "[concat(variables('lbID'),'/probes/NFStcpProbe')]"
         },
-    "resources": [
-      {
-      "apiVersion": "2019-02-01",
-      "type": "Microsoft.Network/publicIPAddresses",
-      "name": "[variables('publicIPAddressName')]",
-      "location": "[parameters('location')]",
-      "sku": {
-          "name": "Standard"
-      },
-      "tags": {},
-      "properties": {
-          "publicIPAllocationMethod": "Static",
-          "publicIPAddressVersion": "IPv4",
-          "ipTags": []
-      }
-    },  
+    "resources": [  
       {
             "name": "[parameters('lbname')]",
             "type": "Microsoft.Network/loadBalancers",
@@ -56,7 +39,6 @@
                 "name": "[parameters('lbsku')]"
             },
             "dependsOn": [
-              "[variables('publicIPAddressId')]"
             ],
             "tags": {},
             "properties": {
@@ -64,9 +46,7 @@
                     {
                         "name": "NFSFrontEnd",
                         "properties": {
-                          "publicIPAddress": {
-                            "id": "[variables('publicIPAddressId')]"
-                        }
+                          "privateIPAddress": "[parameters('LBprivateIPAddress')]"
                         }
                     }
                 ],
@@ -131,9 +111,5 @@
 
     ],
     "outputs": {
-      "publicIPAddressNameId": {
-        "type": "string",
-        "value": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]"
-    }
     }
 }
