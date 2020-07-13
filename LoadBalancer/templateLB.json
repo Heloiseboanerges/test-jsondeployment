@@ -34,7 +34,7 @@
             "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/NFSFrontEnd')]",
             "lbPoolID": "[concat(variables('lbID'),'/backendAddressPools/BackendNFS')]",
             "lbProbeID": "[concat(variables('lbID'),'/probes/NFStcpProbe')]",
-            "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), variables ('subnetName'))]"
+            "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters ('subnetName'))]"
         },
     "resources": [  
       {
