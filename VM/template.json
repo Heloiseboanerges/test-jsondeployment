@@ -81,6 +81,7 @@
         "nicName" : "[concat(parameters('virtualMachineName'),'-NIC-01')]",
         "networkSecurityGroupName" : "[concat(variables('nicName'),'-NSG')]",
         "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
+        "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]",
         "pipName" : "[concat(parameters('virtualMachineName'),'-PIP')]",
         "OsdiskName": "[concat('MD-', parameters('virtualMachineName'),'-OS')]"
     },
