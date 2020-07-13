@@ -94,8 +94,8 @@
                 "name": "Standard"
             },
             "properties": {
-                "publicIPAllocationMethod": "Dynamic"
-            }
+                "publicIPAllocationMethod": "Static"
+            }            
         },
         {
             "name": "[variables('nicName')]",
