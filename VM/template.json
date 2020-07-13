@@ -81,17 +81,30 @@
         "nicName" : "[concat(parameters('virtualMachineName'),'-NIC-01')]",
         "networkSecurityGroupName" : "[concat(variables('nicName'),'-NSG')]",
         "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
-        "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]"
-
+        "pipName" : "[concat(parameters('virtualMachineName'),'-PIP')]",
+        "OsdiskName": "[concat('MD-', parameters('virtualMachineName'),'-OS')]"
     },
     "resources": [
+        {
+            "name": "[variables('pipName')]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2019-04-01",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "Standard"
+            },
+            "properties": {
+                "publicIPAllocationMethod": "Dynamic"
+            }
+        },
         {
             "name": "[variables('nicName')]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2019-07-01",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[concat('Microsoft.Network/networkSecurityGroups/', variables('networkSecurityGroupName'))]"
+                "[concat('Microsoft.Network/networkSecurityGroups/', variables('networkSecurityGroupName'))]",
+                "[variables('pipName')]"
             ],
             "properties": {
                 "ipConfigurations": [
@@ -107,7 +120,8 @@
                                 }
                             ],
                             "privateIPAddress": "[parameters('privateIPAddress')]",
-                            "privateIPAllocationMethod": "Static"
+                            "privateIPAllocationMethod": "Static",
+                            "publicIPAddress" : "[variables('pipName')]"
                         }
                     }
                 ],
@@ -159,7 +173,7 @@
                 "storageProfile": {
                     "osDisk": {
                         "diskSizeGB": 64,
-						"name": "[concat('MD-', parameters('virtualMachineName'),'-OS')]",
+						"name": "[variables('OsdiskName')]",
                         "createOption": "FromImage",
                         "managedDisk": {
                             "storageAccountType": "[parameters('osDiskType')]"
