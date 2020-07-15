@@ -19,17 +19,17 @@ systemctl --no-pager show | grep DefaultTasksMax
 
 # Reduce the size of the dirty cache
 dirty=$(cat /proc/sys/vm/dirty_bytes)
-$dirty
+echo $dirty
 sudo echo 629145600 > /proc/sys/vm/dirty_bytes
 dirty=$(cat /proc/sys/vm/dirty_bytes)
-$dirty
+echo $dirty
 
 # Reduce the size of the dirty background
 dirty_background=$(cat /proc/sys/vm/dirty_background_bytes)
-$dirty_background
+echo $dirty_background
 sudo echo 314572800 > /proc/sys/vm/dirty_background_bytes
 dirty_background=$(cat /proc/sys/vm/dirty_background_bytes)
-$dirty_background
+echo $dirty_background
 
 # Change the configuration file for the network interface to prevent the cloud network plugin from removing the virtual IP address
 NIC=$(cat /etc/sysconfig/network/ifcfg-eth0 | grep CLOUD_NETCONFIG_MANAGE=)
