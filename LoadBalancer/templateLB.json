@@ -77,8 +77,8 @@
                     }
                   ],
                   "loadBalancingRules": [
-                    {
-                      "name": "NFSTcpLBRule",
+                    {                      
+                      "name": "HA",
                       "properties": {
                         "frontendIPConfiguration": {
                           "id": "[variables('frontEndIPConfigID')]"
@@ -86,35 +86,16 @@
                         "backendAddressPool": {
                           "id": "[variables('lbPoolID')]"
                         },
-                        "protocol": "Tcp",
-                        "frontendPort": 2049,
-                        "backendPort": 2049,
+                        "frontendPort": 0,
+                        "backendPort": 0,
+                        "protocol": "All",
                         "enableFloatingIP": true,
                         "idleTimeoutInMinutes": 30,
                         "probe": {
                           "id": "[variables('lbProbeID')]"
                         }
                       }
-                    },
-                    {
-                        "name": "NFSUdpLBRule",
-                        "properties": {
-                          "frontendIPConfiguration": {
-                            "id": "[variables('frontEndIPConfigID')]"
-                          },
-                          "backendAddressPool": {
-                            "id": "[variables('lbPoolID')]"
-                          },
-                          "protocol": "Udp",
-                          "frontendPort": 2049,
-                          "backendPort": 2049,
-                          "enableFloatingIP": true,
-                          "idleTimeoutInMinutes": 30,
-                          "probe": {
-                            "id": "[variables('lbProbeID')]"
-                          }
-                        }
-                      }
+                    }
                   ]
             }
         }

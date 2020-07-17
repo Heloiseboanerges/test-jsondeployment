@@ -8,9 +8,6 @@
         "enableAcceleratedNetworking": {
             "type": "bool"
         },
-        "networkSecurityGroupRules": {
-            "type": "array"
-        },
         "subnetName": {
             "type": "string"
         },
@@ -79,8 +76,6 @@
         "vnetId": "[parameters('virtualNetworkId')]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
         "nicName" : "[concat(parameters('virtualMachineName'),'-NIC-01')]",
-        "networkSecurityGroupName" : "[concat(variables('nicName'),'-NSG')]",
-        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
         "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]",
         "pipName" : "[concat(parameters('virtualMachineName'),'-PIP')]",
         "OsdiskName": "[concat('MD-', parameters('virtualMachineName'),'-OS')]"
@@ -128,19 +123,7 @@
                         }
                     }
                 ],
-                "enableAcceleratedNetworking": "[parameters('enableAcceleratedNetworking')]",
-                "networkSecurityGroup": {
-                    "id": "[variables('nsgId')]"
-                }
-            }
-        },
-        {
-            "name": "[variables('networkSecurityGroupName')]",
-            "type": "Microsoft.Network/networkSecurityGroups",
-            "apiVersion": "2019-02-01",
-            "location": "[parameters('location')]",
-            "properties": {
-                "securityRules": "[parameters('networkSecurityGroupRules')]"
+                "enableAcceleratedNetworking": "[parameters('enableAcceleratedNetworking')]"
             }
         },
         {

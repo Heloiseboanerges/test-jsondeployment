@@ -8,25 +8,6 @@
     "enableAcceleratedNetworking": {
       "value": true
     },
-    "networkSecurityGroupRules": {
-      "value": [
-        {
-          "name": "ssh",
-          "properties": {
-            "priority": 1010,
-            "protocol": "TCP",
-            "access": "Allow",
-            "direction": "Inbound",
-            "sourceApplicationSecurityGroups": [],
-            "destinationApplicationSecurityGroups": [],
-            "sourceAddressPrefix": "*",
-            "sourcePortRange": "*",
-            "destinationAddressPrefix": "*",
-            "destinationPortRange": "22"
-          }
-        }
-      ]
-    },
     "subnetName": {
       "value": "machines"
     },
