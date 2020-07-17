@@ -99,7 +99,6 @@
             "apiVersion": "2019-07-01",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[concat('Microsoft.Network/networkSecurityGroups/', variables('networkSecurityGroupName'))]",
                 "[variables('pipName')]"
             ],
             "properties": {
